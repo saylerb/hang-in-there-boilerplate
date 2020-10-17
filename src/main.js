@@ -7,8 +7,8 @@ var posterQuote = document.querySelector('.poster-quote');
 var randomButton = document.querySelector('.show-random');
 var mainPosterPage = document.querySelector('.main-poster');
 var currentPoster = document.querySelector('.poster');
-// var savePosterButton = document.querySelector('.save-poster');
-// var showSavedPostersButton = document.querySelector('.show-saved');
+var savePosterButton = document.querySelector('.save-poster');
+var showSavedPostersButton = document.querySelector('.show-saved');
 
 //make your own poster page
 var posterForm = document.querySelector('.poster-form');
@@ -20,7 +20,8 @@ var posterQuoteInput = document.querySelector('input.poster-quote'); //not sure 
 var takeMeBackButton = document.querySelector('.show-main');
 // var backToMainButton = document.querySelector('.back-to-main');
 
-
+// saved posters page
+var savedPostersForm = document.querySelector('.saved-posters');
 
 
 // we've provided you with some data to work with 👇
@@ -128,7 +129,6 @@ var currentPoster;
 // event listeners go here 👇
 
 window.addEventListener('load', showPoster)
-//would we need this window function to load the new page for make your own?
 
 // savePosterButton.addEventListener('click', savePoster)
 // showSavedPostersButton.addEventListener('click', showSavedPosters)
@@ -139,11 +139,7 @@ makeYourOwnPosterButton.addEventListener('click', openForm)
 showMyPosterButton.addEventListener('click', generatePoster)
 takeMeBackButton.addEventListener('click', hideForm)
 
-// functions and event handlers go here 👇
-
-// document.querySelector("button").onclick = function(event) { … }.
-
-// (we've provided one for you to get you started)!
+// functions and event handlers go here 👇 (we've provided one for you to get you started)!
 
 // functions on main generate random poster page
 function getRandomIndex(array) {
@@ -163,15 +159,9 @@ function showPoster() {
   posterQuote.innerText = currentPoster.quote;
 };
 
-// function savePoster() {
-//   savedPosters.push('imageURL', 'title', 'quote');
-// };
-
-// function showSavedPosters() {
-//
-// };
-
-
+function savePoster() {
+  savedPosters.push('imageURL', 'title', 'quote');
+};
 
 //functions on create your own poster page
 function openForm() {
@@ -187,3 +177,14 @@ function generatePoster() {
   posterTitle.innerText = textInput.value
   posterQuote.innerText = textInput.value
 }
+
+//functions on the saved posters page
+function openSavedPostersForm() { 
+  mainPosterPage.classList.toggle('hidden'); 
+  savedPostersForm.classList.toggle('hidden'); 
+}
+
+function hideSavedPostersForm() { 
+  savedPostersForm.classList.toggle('hidden'); 
+  mainPosterPage.classList.toggle('hidden'); 
+} 
