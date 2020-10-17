@@ -1,17 +1,27 @@
 // query selector variables go here 👇
+
+//main page
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
 var randomButton = document.querySelector('.show-random');
 var mainPosterPage = document.querySelector('.main-poster');
-var posterForm = document.querySelector('.poster-form');
-// var currentPoster = document.querySelector('.poster');
+var currentPoster = document.querySelector('.poster');
 // var savePosterButton = document.querySelector('.save-poster');
 // var showSavedPostersButton = document.querySelector('.show-saved');
+
+//make your own poster page
+var posterForm = document.querySelector('.poster-form');
 var makeYourOwnPosterButton = document.querySelector('.show-form');
-// var showMyPosterButton = document.querySelector('.make-poster');
+var showMyPosterButton = document.querySelector('.make-poster');
+var imageUrlInput = document.querySelector('.poster-image-url');
+var titleInput = document.querySelector('input.poster-title'); //not sure about green bit
+var posterQuoteInput = document.querySelector('input.poster-quote'); //not sure about this green either
 var takeMeBackButton = document.querySelector('.show-main');
 // var backToMainButton = document.querySelector('.back-to-main');
+
+
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -124,7 +134,9 @@ window.addEventListener('load', showPoster)
 // showSavedPostersButton.addEventListener('click', showSavedPosters)
 randomButton.addEventListener('click', showPoster)
 makeYourOwnPosterButton.addEventListener('click', openForm)
-// showMyPosterButton.addEventListener('click', function)
+
+//event listeners on make your own poster page
+showMyPosterButton.addEventListener('click', generatePoster)
 takeMeBackButton.addEventListener('click', hideForm)
 
 // functions and event handlers go here 👇
@@ -132,6 +144,8 @@ takeMeBackButton.addEventListener('click', hideForm)
 // document.querySelector("button").onclick = function(event) { … }.
 
 // (we've provided one for you to get you started)!
+
+// functions on main generate random poster page
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
@@ -142,7 +156,7 @@ function generateRandomPoster() {
   quotes[getRandomIndex(quotes)]);
 };
 
-function showPoster() { //why two functions here?
+function showPoster() {
   generateRandomPoster();
   posterImage.src = currentPoster.imageURL;
   posterTitle.innerText = currentPoster.title;
@@ -152,22 +166,24 @@ function showPoster() { //why two functions here?
 // function savePoster() {
 //   savedPosters.push('imageURL', 'title', 'quote');
 // };
-//
+
 // function showSavedPosters() {
 //
 // };
 
-// function makeYourOwnPoster() {
-// load form on window, hide main poster
-// };
+
+
+//functions on create your own poster page
 function openForm() {
   mainPosterPage.classList.toggle('hidden');
   posterForm.classList.toggle('hidden');
 }
-
 function hideForm() {
   posterForm.classList.toggle('hidden');
   mainPosterPage.classList.toggle('hidden');
 }
-//
-// }
+function generatePoster() {
+  posterImage.src = currentPoster.imageURL;
+  posterTitle.innerText = textInput.value
+  posterQuote.innerText = textInput.value
+}

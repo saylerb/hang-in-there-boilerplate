@@ -1,7 +1,8 @@
 ## Feature Description
 >Clearly and concisely describe the feature.
 
-Open and hide form functionality
+Organize JS page into categories.
+Add query selectors for make your own poster page
 
 ## Analysis and Design
 >Analyze and attach the design documentation, if any.
@@ -11,7 +12,9 @@ N/A
 ## Solution Description
 >Describe your code changes in detail for reviewers.
 
-Using toggle, we have added functionality to the "Make Your Own Poster" button. This button toggles the hidden aspect of the form from hidden to visible, and visa versa for the main page. 
+The page was getting difficult to read with all the query selectors and functions not organized. We took a moment to reorganize, which will save us time in the future.
+
+We also added query selectors to the create your own poster page to prep for the functions.
 
 ## Output screenshots
 >Post the output screenshots, if an UI is affected or added due to this feature.
