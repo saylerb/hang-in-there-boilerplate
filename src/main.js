@@ -3,14 +3,14 @@ var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
 var randomButton = document.querySelector('.show-random');
-// var mainPosterPage = document.querySelector('.main-poster');
-// var posterForm = document.querySelector('.poster-form');
+var mainPosterPage = document.querySelector('.main-poster');
+var posterForm = document.querySelector('.poster-form');
 // var currentPoster = document.querySelector('.poster');
 // var savePosterButton = document.querySelector('.save-poster');
 // var showSavedPostersButton = document.querySelector('.show-saved');
-// var makeYourOwnPosterButton = document.querySelector('.show-form');
+var makeYourOwnPosterButton = document.querySelector('.show-form');
 // var showMyPosterButton = document.querySelector('.make-poster');
-// var takeMeBackButton = document.querySelector('.show-main');
+var takeMeBackButton = document.querySelector('.show-main');
 // var backToMainButton = document.querySelector('.back-to-main');
 
 // we've provided you with some data to work with 👇
@@ -111,20 +111,20 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
+
 var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
 
 window.addEventListener('load', showPoster)
-window.addEventListener('load', makeYourOwnPoster)
 //would we need this window function to load the new page for make your own?
 
-savePosterButton.addEventListener('click', savePoster)
-showSavedPostersButton.addEventListener('click', showSavedPosters)
+// savePosterButton.addEventListener('click', savePoster)
+// showSavedPostersButton.addEventListener('click', showSavedPosters)
 randomButton.addEventListener('click', showPoster)
-makeYourOwnPosterButton.addEventListener('click', showForm)
-showMyPosterButton.addEventListener('click', function)
+makeYourOwnPosterButton.addEventListener('click', openForm)
+// showMyPosterButton.addEventListener('click', function)
 takeMeBackButton.addEventListener('click', hideForm)
 
 // functions and event handlers go here 👇
@@ -149,27 +149,25 @@ function showPoster() { //why two functions here?
   posterQuote.innerText = currentPoster.quote;
 };
 
-function savePoster() {
-  savedPosters.push('imageURL', 'title', 'quote');
-};
+// function savePoster() {
+//   savedPosters.push('imageURL', 'title', 'quote');
+// };
+//
+// function showSavedPosters() {
+//
+// };
 
-function showSavedPosters() {
-
-};
-
-
-function showForm() {
-  document.getElementById('.poster-form').style.display="block";
+// function makeYourOwnPoster() {
+// load form on window, hide main poster
+// };
+function openForm() {
+  mainPosterPage.classList.toggle('hidden');
+  posterForm.classList.toggle('hidden');
 }
 
 function hideForm() {
-  document.getElementById('.poster-form').style.display="none";
+  posterForm.classList.toggle('hidden');
+  mainPosterPage.classList.toggle('hidden');
 }
-
-function makeYourOwnPoster() {
-load form on window, hide main poster
-};
-// function openForm() {
-//   mainPosterPage.classList.toggle('hidden');
 //
 // }
