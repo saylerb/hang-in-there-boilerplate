@@ -130,7 +130,7 @@ var currentPoster;
 
 window.addEventListener('load', showPoster);
 
-//savePosterButton.addEventListener('click', savePoster)
+savePosterButton.addEventListener('click', displayOnGrid);
 randomButton.addEventListener('click', showPoster);
 makeYourOwnPosterButton.addEventListener('click', openForm);
 showSavedPostersButton.addEventListener('click', openSavedPostersForm);
@@ -198,21 +198,21 @@ function hideSavedPostersForm() { 
   mainPosterPage.classList.toggle('hidden'); 
 } ;
 
-// function savePoster() {
-//   if (!savedPosters.includes(currentPoster)){
-//     //savedPosters.push(currentPoster)
-//
-//     // images.push(currentPoster.imageURL);
-//     // title.push(currentPoster.title);
-//     // quotes.push(currentPoster.quotes);
-//
-//   //savedPostersGrid.push(currentPoster);
-//   }
-// };
+function savePoster() {
+  if (!savedPosters.includes(currentPoster)){
+    savedPosters.push(currentPoster);
+  }
+};
 
-// function displayOnGrid() {
-//   for (i = 0; i < savedPosters.length; i++) {
-//     //savedPosters[i].style.flex = "33%";
-//
-//   }
-// }
+function displayOnGrid() {
+  savePoster();
+  for (var i = 0; i < savedPosters.length; i++) {
+     savedPostersGrid.innerHTML = `
+     <img class="mini-poster" src="${savedPosters[i].imageURL}" alt="Saved Poster">
+     <h2>${savedPosters[i].title}</h2>
+     <h4>${savedPosters[i].quote}</h4>`
+  }
+};
+
+// currentPoster.src = savedPostersGrid
+// savedPostersGrid.src =
