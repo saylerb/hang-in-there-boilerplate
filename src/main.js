@@ -130,7 +130,7 @@ var currentPoster;
 
 window.addEventListener('load', showPoster);
 
-// savePosterButton.addEventListener('click', savePoster)
+savePosterButton.addEventListener('click', savePoster)
 randomButton.addEventListener('click', showPoster);
 makeYourOwnPosterButton.addEventListener('click', openForm);
 showSavedPostersButton.addEventListener('click', openSavedPostersForm);
@@ -197,6 +197,19 @@ function hideSavedPostersForm() { 
 
 function savePoster() {
   if (!savedPosters.includes(currentPoster)){
-  savedPostersGrid.push(currentPoster);
+    //savedPosters.push(currentPoster)
+
+    // images.push(currentPoster.imageURL);
+    // title.push(currentPoster.title);
+    // quotes.push(currentPoster.quotes);
+
+  //savedPostersGrid.push(currentPoster);
   }
 };
+
+function displayOnGrid() {
+  for (i = 0; i < savedPosters.length; i++) {
+    //savedPosters[i].style.flex = "33%";
+
+  }
+}
