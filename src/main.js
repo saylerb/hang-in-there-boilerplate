@@ -130,10 +130,10 @@ var currentPoster;
 
 window.addEventListener('load', showPoster);
 
-savePosterButton.addEventListener('click', displayOnGrid);
+savePosterButton.addEventListener('click', savePoster);
 randomButton.addEventListener('click', showPoster);
 makeYourOwnPosterButton.addEventListener('click', openForm);
-showSavedPostersButton.addEventListener('click', openSavedPostersForm);
+showSavedPostersButton.addEventListener('click', displayOnGrid);
 backToMainButton.addEventListener('click', hideSavedPostersForm);
 //event listeners on make your own poster page
 showMyPosterButton.addEventListener('click', showMyPoster);
@@ -205,14 +205,14 @@ function savePoster() {
 };
 
 function displayOnGrid() {
-  savePoster();
+
+  openSavedPostersForm();
   for (var i = 0; i < savedPosters.length; i++) {
      savedPostersGrid.innerHTML = `
-     <img class="mini-poster" src="${savedPosters[i].imageURL}" alt="Saved Poster">
-     <h2>${savedPosters[i].title}</h2>
-     <h4>${savedPosters[i].quote}</h4>`
+     <article class="mini-poster">
+      <img class="mini-poster" src="${savedPosters[i].imageURL}" alt="Saved Poster">
+      <h2>${savedPosters[i].title}</h2>
+      <h4>${savedPosters[i].quote}</h4>
+     </article>`
   }
 };
-
-// currentPoster.src = savedPostersGrid
-// savedPostersGrid.src =
