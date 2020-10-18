@@ -14,11 +14,11 @@ var showSavedPostersButton = document.querySelector('.show-saved');
 var posterForm = document.querySelector('.poster-form');
 var makeYourOwnPosterButton = document.querySelector('.show-form');
 var showMyPosterButton = document.querySelector('.make-poster');
-var imageUrlInput = document.querySelector('.poster-image-url');
-var titleInput = document.querySelector('input.poster-title'); //not sure about green bit
-var posterQuoteInput = document.querySelector('input.poster-quote'); //not sure about this green either
+var imageUrlInput = document.querySelector('#poster-image-url');
+var titleInput = document.querySelector('#poster-title');
+var quoteInput = document.querySelector('#poster-quote');
 var takeMeBackButton = document.querySelector('.show-main');
-// var backToMainButton = document.querySelector('.back-to-main');
+var backToMainButton = document.querySelector('.back-to-main');
 
 // saved posters page
 var savedPostersForm = document.querySelector('.saved-posters');
@@ -128,16 +128,16 @@ var currentPoster;
 
 // event listeners go here 👇
 
-window.addEventListener('load', showPoster)
+window.addEventListener('load', showPoster);
 
 // savePosterButton.addEventListener('click', savePoster)
-// showSavedPostersButton.addEventListener('click', showSavedPosters)
-randomButton.addEventListener('click', showPoster)
-makeYourOwnPosterButton.addEventListener('click', openForm)
-
+randomButton.addEventListener('click', showPoster);
+makeYourOwnPosterButton.addEventListener('click', openForm);
+showSavedPostersButton.addEventListener('click', openSavedPostersForm);
+backToMainButton.addEventListener('click', hideSavedPostersForm);
 //event listeners on make your own poster page
-showMyPosterButton.addEventListener('click', generatePoster)
-takeMeBackButton.addEventListener('click', hideForm)
+showMyPosterButton.addEventListener('click', showMyPoster);
+takeMeBackButton.addEventListener('click', hideForm);
 
 // functions and event handlers go here 👇 (we've provided one for you to get you started)!
 
@@ -160,31 +160,41 @@ function showPoster() {
 };
 
 function savePoster() {
-  savedPosters.push('imageURL', 'title', 'quote');
+  savedPosters.push(currentPoster);
 };
 
 //functions on create your own poster page
 function openForm() {
   mainPosterPage.classList.toggle('hidden');
   posterForm.classList.toggle('hidden');
-}
+};
+
 function hideForm() {
   posterForm.classList.toggle('hidden');
   mainPosterPage.classList.toggle('hidden');
-}
+};
+
 function generatePoster() {
-  posterImage.src = currentPoster.imageURL;
-  posterTitle.innerText = textInput.value
-  posterQuote.innerText = textInput.value
-}
+  posterImage.src = imageUrlInput.value;
+  posterTitle.innerText = titleInput.value;
+  posterQuote.innerText = quoteInput.value;
+  currentPoster = new Poster(posterImage.src,
+    posterTitle.innerText, posterQuote.innerText);
+};
+
+function showMyPoster() {
+  event.preventDefault();
+  generatePoster();
+  hideForm();
+};
 
 //functions on the saved posters page
 function openSavedPostersForm() { 
   mainPosterPage.classList.toggle('hidden'); 
   savedPostersForm.classList.toggle('hidden'); 
-}
+};
 
 function hideSavedPostersForm() { 
   savedPostersForm.classList.toggle('hidden'); 
   mainPosterPage.classList.toggle('hidden'); 
-} 
+} ;
