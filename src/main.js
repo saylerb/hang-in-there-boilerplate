@@ -22,7 +22,7 @@ var backToMainButton = document.querySelector('.back-to-main');
 
 // saved posters page
 var savedPostersForm = document.querySelector('.saved-posters');
-
+var savedPostersGrid = document.querySelector('.saved-posters-grid');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -159,10 +159,6 @@ function showPoster() {
   posterQuote.innerText = currentPoster.quote;
 };
 
-function savePoster() {
-  savedPosters.push(currentPoster);
-};
-
 //functions on create your own poster page
 function openForm() {
   mainPosterPage.classList.toggle('hidden');
@@ -198,3 +194,9 @@ function hideSavedPostersForm() { 
   savedPostersForm.classList.toggle('hidden'); 
   mainPosterPage.classList.toggle('hidden'); 
 } ;
+
+function savePoster() {
+  if (!savedPosters.includes(currentPoster)){
+  savedPostersGrid.push(currentPoster);
+  }
+};
