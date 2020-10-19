@@ -205,10 +205,10 @@ function savePoster() {
 };
 
 function displayOnGrid() {
-
   openSavedPostersForm();
+  savedPostersGrid.innerHTML = '';
   for (var i = 0; i < savedPosters.length; i++) {
-     savedPostersGrid.innerHTML = `
+     savedPostersGrid.innerHTML += `
      <article class="mini-poster">
       <img class="mini-poster" src="${savedPosters[i].imageURL}" alt="Saved Poster">
       <h2>${savedPosters[i].title}</h2>
