@@ -23,6 +23,7 @@ var backToMainButton = document.querySelector('.back-to-main');
 // saved posters page
 var savedPostersForm = document.querySelector('.saved-posters');
 var savedPostersGrid = document.querySelector('.saved-posters-grid');
+// var miniPoster = document.querySelector('.mini-poster');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -132,12 +133,14 @@ window.addEventListener('load', showPoster);
 
 savePosterButton.addEventListener('click', savePoster);
 randomButton.addEventListener('click', showPoster);
-makeYourOwnPosterButton.addEventListener('click', openForm);
+makeYourOwnPosterButton.addEventListener('click', toggleForm);
 showSavedPostersButton.addEventListener('click', displayOnGrid);
-backToMainButton.addEventListener('click', hideSavedPostersForm);
 //event listeners on make your own poster page
 showMyPosterButton.addEventListener('click', showMyPoster);
-takeMeBackButton.addEventListener('click', hideForm);
+takeMeBackButton.addEventListener('click', toggleForm);
+//event listeners on the saved posters posterImage
+backToMainButton.addEventListener('click', toggleForm);
+// savedPostersGride.addEventListener('dblclick', deleteSavedPoster);
 
 // functions and event handlers go here 👇 (we've provided one for you to get you started)!
 
@@ -160,14 +163,9 @@ function showPoster() {
 };
 
 //functions on create your own poster page
-function openForm() {
+function toggleForm() {
   mainPosterPage.classList.toggle('hidden');
   posterForm.classList.toggle('hidden');
-};
-
-function hideForm() {
-  posterForm.classList.toggle('hidden');
-  mainPosterPage.classList.toggle('hidden');
 };
 
 function generatePoster() {
@@ -181,22 +179,17 @@ function generatePoster() {
 function showMyPoster() {
   event.preventDefault();
   generatePoster();
-  hideForm();
+  toggleForm();
   images.push(currentPoster.imageURL);
   titles.push(currentPoster.title);
   quotes.push(currentPoster.quote);
 };
 
 //functions on the saved posters page
-function openSavedPostersForm() { 
+function toggleSavedPosters() { 
   mainPosterPage.classList.toggle('hidden'); 
   savedPostersForm.classList.toggle('hidden'); 
 };
-
-function hideSavedPostersForm() { 
-  savedPostersForm.classList.toggle('hidden'); 
-  mainPosterPage.classList.toggle('hidden'); 
-} ;
 
 function savePoster() {
   if (!savedPosters.includes(currentPoster)){
@@ -205,14 +198,20 @@ function savePoster() {
 };
 
 function displayOnGrid() {
-  openSavedPostersForm();
+  toggleSavedPosters();
   savedPostersGrid.innerHTML = '';
   for (var i = 0; i < savedPosters.length; i++) {
      savedPostersGrid.innerHTML += `
      <article class="mini-poster">
-      <img class="mini-poster" src="${savedPosters[i].imageURL}" alt="Saved Poster">
-      <h2>${savedPosters[i].title}</h2>
-      <h4>${savedPosters[i].quote}</h4>
+        <img class="mini-poster" src="${savedPosters[i].imageURL}" id="${savedPosters[i].id}">
+        <h2>${savedPosters[i].title}</h2>
+        <h4>${savedPosters[i].quote}</h4>
      </article>`
   }
 };
+
+// function deleteSavedPoster(event) {
+//   if (event.target. [className] === 'dblclick') {
+//     classList.remove('.mini-poster')
+//   }
+// }
