@@ -1,7 +1,10 @@
 ## Feature Description
 >Clearly and concisely describe the feature.
 
-Add images to readme.imgs file and edited links to images in README.md
+Cleaned up all code and comments.
+Refactored for submission.
+Finished up to iteration 3.
+
 
 ## Analysis and Design
 >Analyze and attach the design documentation, if any.
@@ -11,7 +14,7 @@ N/A
 ## Solution Description
 >Describe your code changes in detail for reviewers.
 
-Corrected image URLS on the README file so that they go to the right place and added images to the readme-imgs file.
+Refactored code to the rubric's specifications.
 
 ## Output screenshots
 >Post the output screenshots, if an UI is affected or added due to this feature.

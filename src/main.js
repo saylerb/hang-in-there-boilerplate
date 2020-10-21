@@ -1,6 +1,3 @@
-// query selector variables go here 👇
-
-//main page
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
@@ -9,8 +6,6 @@ var mainPosterPage = document.querySelector('.main-poster');
 var currentPoster = document.querySelector('.poster');
 var savePosterButton = document.querySelector('.save-poster');
 var showSavedPostersButton = document.querySelector('.show-saved');
-
-//make your own poster page
 var posterForm = document.querySelector('.poster-form');
 var makeYourOwnPosterButton = document.querySelector('.show-form');
 var showMyPosterButton = document.querySelector('.make-poster');
@@ -19,13 +14,8 @@ var titleInput = document.querySelector('#poster-title');
 var quoteInput = document.querySelector('#poster-quote');
 var takeMeBackButton = document.querySelector('.show-main');
 var backToMainButton = document.querySelector('.back-to-main');
-
-// saved posters page
 var savedPostersForm = document.querySelector('.saved-posters');
 var savedPostersGrid = document.querySelector('.saved-posters-grid');
-// var miniPoster = document.querySelector('.mini-poster');
-
-// we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -123,28 +113,18 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
-
 var savedPosters = [];
 var currentPoster;
 
-// event listeners go here 👇
-
 window.addEventListener('load', showPoster);
-
 savePosterButton.addEventListener('click', savePoster);
 randomButton.addEventListener('click', showPoster);
 makeYourOwnPosterButton.addEventListener('click', toggleForm);
 showSavedPostersButton.addEventListener('click', displayOnGrid);
-//event listeners on make your own poster page
 showMyPosterButton.addEventListener('click', showMyPoster);
 takeMeBackButton.addEventListener('click', toggleForm);
-//event listeners on the saved posters posterImage
-backToMainButton.addEventListener('click', toggleForm);
-// savedPostersGride.addEventListener('dblclick', deleteSavedPoster);
+backToMainButton.addEventListener('click', toggleSavedPosters);
 
-// functions and event handlers go here 👇 (we've provided one for you to get you started)!
-
-// functions on main generate random poster page
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
@@ -162,7 +142,6 @@ function showPoster() {
   posterQuote.innerText = currentPoster.quote;
 };
 
-//functions on create your own poster page
 function toggleForm() {
   mainPosterPage.classList.toggle('hidden');
   posterForm.classList.toggle('hidden');
@@ -185,14 +164,13 @@ function showMyPoster() {
   quotes.push(currentPoster.quote);
 };
 
-//functions on the saved posters page
 function toggleSavedPosters() { 
   mainPosterPage.classList.toggle('hidden'); 
   savedPostersForm.classList.toggle('hidden'); 
 };
 
 function savePoster() {
-  if (!savedPosters.includes(currentPoster)){
+  if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
   }
 };
@@ -209,9 +187,3 @@ function displayOnGrid() {
      </article>`
   }
 };
-
-// function deleteSavedPoster(event) {
-//   if (event.target. [className] === 'dblclick') {
-//     classList.remove('.mini-poster')
-//   }
-// }
