@@ -1,16 +1,20 @@
-var savePosterBtn = document.querySelector('.save-poster');
-var showSavedBtn = document.querySelector('.show-saved');
-var showRandomBtn = document.querySelector('.show-random');
-var showFormBtn = document.querySelector('.show-form');
-var makePosterBtn = document.querySelector('.make-poster');
-var showMainBtn = document.querySelector('.show-main');
-var backToMainBtn = document.querySelector('.back-to-main');
-var imageInput = document.querySelector('#poster-image-url');
+var posterImage = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
+var randomButton = document.querySelector('.show-random');
+var mainPosterPage = document.querySelector('.main-poster');
+var currentPoster = document.querySelector('.poster');
+var savePosterButton = document.querySelector('.save-poster');
+var showSavedPostersButton = document.querySelector('.show-saved');
+var posterForm = document.querySelector('.poster-form');
+var makeYourOwnPosterButton = document.querySelector('.show-form');
+var showMyPosterButton = document.querySelector('.make-poster');
+var imageUrlInput = document.querySelector('#poster-image-url');
 var titleInput = document.querySelector('#poster-title');
 var quoteInput = document.querySelector('#poster-quote');
-var mainPosterSection = document.querySelector('.main-poster');
-var posterFormSection = document.querySelector('.poster-form');
-var savedPostersSection = document.querySelector('.saved-posters');
+var takeMeBackButton = document.querySelector('.show-main');
+var backToMainButton = document.querySelector('.back-to-main');
+var savedPostersForm = document.querySelector('.saved-posters');
 var savedPostersGrid = document.querySelector('.saved-posters-grid');
 var images = [
   "./assets/bees.jpg",
@@ -109,97 +113,77 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
-var savedPosters = [
-  makePoster("./assets/pug.jpg", "Optimism", "Keep a joyful heart!")
-];
+var savedPosters = [];
 var currentPoster;
 
-window.onload = displayRandomPoster;
-savePosterBtn.addEventListener('click', saveCurrentPoster);
-showRandomBtn.addEventListener('click', displayRandomPoster);
-showFormBtn.addEventListener('click', displayForm);
-makePosterBtn.addEventListener('click', createNewPoster);
-showSavedBtn.addEventListener('click', displaySavedPosters);
-showMainBtn.addEventListener('click', displayMain);
-backToMainBtn.addEventListener('click', displayMain);
-
-function displayRandomPoster() {
-  var randomImage = images[getRandomIndex(images)];
-  var randomTitle = titles[getRandomIndex(titles)];
-  var randomQuote = quotes[getRandomIndex(quotes)];
-
-  currentPoster = makePoster(randomImage, randomTitle, randomQuote);
-
-  displayCurrent();
-}
+window.addEventListener('load', showPoster);
+savePosterButton.addEventListener('click', savePoster);
+randomButton.addEventListener('click', showPoster);
+makeYourOwnPosterButton.addEventListener('click', toggleForm);
+showSavedPostersButton.addEventListener('click', displayOnGrid);
+showMyPosterButton.addEventListener('click', showMyPoster);
+takeMeBackButton.addEventListener('click', toggleForm);
+backToMainButton.addEventListener('click', toggleSavedPosters);
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
-}
+};
 
-function makePoster(imageURL, title, quote) {
-  return new Poster(imageURL, title, quote);
-}
+function generateRandomPoster() {
+  currentPoster = new Poster(images[getRandomIndex(images)],
+  titles[getRandomIndex(titles)],
+  quotes[getRandomIndex(quotes)]);
+};
 
-function createNewPoster(event) {
+function showPoster() {
+  generateRandomPoster();
+  posterImage.src = currentPoster.imageURL;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
+};
+
+function toggleForm() {
+  mainPosterPage.classList.toggle('hidden');
+  posterForm.classList.toggle('hidden');
+};
+
+function generatePoster() {
+  posterImage.src = imageUrlInput.value;
+  posterTitle.innerText = titleInput.value;
+  posterQuote.innerText = quoteInput.value;
+  currentPoster = new Poster(posterImage.src,
+    posterTitle.innerText, posterQuote.innerText);
+};
+
+function showMyPoster() {
   event.preventDefault();
-  var newImg = imageInput.value;
-  var newTitle = titleInput.value;
-  var newQuote = quoteInput.value;
+  generatePoster();
+  toggleForm();
+  images.push(currentPoster.imageURL);
+  titles.push(currentPoster.title);
+  quotes.push(currentPoster.quote);
+};
 
-  images.push(newImg);
-  titles.push(newTitle);
-  quotes.push(newQuote);
+function toggleSavedPosters() { 
+  mainPosterPage.classList.toggle('hidden'); 
+  savedPostersForm.classList.toggle('hidden'); 
+};
 
-  currentPoster = makePoster(newImg, newTitle, newQuote);
-
-  displayCurrent();
-  displayMain();
-}
-
-function displayCurrent() {
-  document.querySelector('.poster-img').src = currentPoster.imageURL;
-  document.querySelector('.poster-title').innerText = currentPoster.title;
-  document.querySelector('.poster-quote').innerText = currentPoster.quote;
-
-}
-
-function showSection(section) {
-  var mainSections = document.querySelectorAll('section');
-
-  for (var i = 0; i < mainSections.length; i++) {
-    if (!mainSections[i].classList.contains('hidden')) {
-      mainSections[i].classList.add('hidden');
-    }
+function savePoster() {
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
   }
+};
 
-  section.classList.remove('hidden');
-}
-
-function saveCurrentPoster() {
-  savedPosters.push(currentPoster);
-}
-
-function displaySavedPosters() {
-  showSection(savedPostersSection);
-
+function displayOnGrid() {
+  toggleSavedPosters();
   savedPostersGrid.innerHTML = '';
-
   for (var i = 0; i < savedPosters.length; i++) {
-    savedPostersGrid.innerHTML += `
-      <article class='mini-poster'>
-        <img src=${savedPosters[i].imageURL}>
+     savedPostersGrid.innerHTML += `
+     <article class="mini-poster">
+        <img class="mini-poster" src="${savedPosters[i].imageURL}" id="${savedPosters[i].id}">
         <h2>${savedPosters[i].title}</h2>
         <h4>${savedPosters[i].quote}</h4>
-      </article>
-    `
+     </article>`
   }
-}
-
-function displayMain() {
-  showSection(mainPosterSection);
-}
-
-function displayForm() {
-  showSection(posterFormSection);
-}
+};
