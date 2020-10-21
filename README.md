@@ -2,11 +2,12 @@
 
 A boilerplate production repo written in Javascript. Do you like to feel motivated when you're down? Hang In There generates random motivational posters to pick you up when you're feeling blue. Have an idea for a motivational poster and you just need to create it? Use the Make My Poster feature to get started.
 
-![hang-in-there-boilerplate-generator-main-page] (file:///Users/annekemiers/Desktop/Screen%20Shot%202020-10-20%20at%203.56.43%20PM.png)
+![screenshot of main page](readme-imgs/boilerplate-main-page.png)
 
-! [boilerplate-generator-saved-posters-page] (file:///Users/annekemiers/Desktop/Screen%20Shot%202020-10-20%20at%203.58.38%20PM.png)
+![boilerplate-generator-saved-posters-page](readme-imgs/saved-images-image.png)
 
-! [boilerplate-generator-create-your-own-page] (file:///Users/annekemiers/Desktop/Screen%20Shot%202020-10-20%20at%204.00.24%20PM.png)
+![screenshot-of-make-your-own-page](readme-imgs/create-your-own-page.png)
+
 
 ## Instructions for Running Project
 
